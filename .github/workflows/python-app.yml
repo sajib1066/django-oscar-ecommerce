@@ -24,6 +24,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    # setup project, make directories, copy local_settings
+    - name: configure project
+      run: |
+        mkdir -p logs && mkdir -p media/uploads
+        cp examples/local_settings.example django_oscar_ecommerce/local_settings.py
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
